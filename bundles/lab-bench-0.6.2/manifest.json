@@ -1,0 +1,1180 @@
+{
+  "schemaVersion": 1,
+  "type": "plugin",
+  "id": "lab-bench",
+  "version": "0.6.2",
+  "description": "Patient registration, requisitions, reception, testing and laboratory reports.",
+  "readme": "",
+  "license": "Apache-2.0",
+  "publisher": {
+    "id": "openldr-ref",
+    "name": "OpenLDR Reference Publisher",
+    "keyFingerprint": "5ac92136598e4f7066ad726b74b5aed339a2d2f94579adf057caff5ed75d7cf5"
+  },
+  "compatibility": {
+    "ceVersion": ">=0.1.13"
+  },
+  "dependencies": [],
+  "capabilities": [
+    {
+      "kind": "host:db"
+    },
+    {
+      "kind": "host:ce-read"
+    },
+    {
+      "kind": "emit-fhir",
+      "resourceTypes": [
+        "Patient",
+        "ServiceRequest",
+        "Specimen",
+        "Observation",
+        "DiagnosticReport",
+        "Provenance"
+      ]
+    }
+  ],
+  "source": "local-file",
+  "payload": {
+    "kind": "plugin",
+    "pluginKind": "sink",
+    "wasmSha256": "2e91123c3529a5833a5b62e4934a65ea3a57349ab5fbd8730be3a8b2cc074861",
+    "entrypoint": "convert",
+    "entrypoints": [
+      "health_check",
+      "queue",
+      "directory",
+      "receive",
+      "history",
+      "advance",
+      "order",
+      "review",
+      "overview",
+      "result_form",
+      "result_options",
+      "patient_find",
+      "patient_name",
+      "specimen",
+      "registration",
+      "requisitions",
+      "case_detail",
+      "editions",
+      "report_detail",
+      "release",
+      "patient_profile",
+      "patients",
+      "quality_list",
+      "quality_get",
+      "quality_record",
+      "quality_close",
+      "quality_create",
+      "edition_latest",
+      "desk_queue",
+      "desk_specimen",
+      "desk_history",
+      "desk_action",
+      "sample_types",
+      "setup_get",
+      "settings_directory",
+      "setup_save",
+      "reject_reasons",
+      "rejections",
+      "send_rejection",
+      "statistics",
+      "eqa_schemes",
+      "eqa_enrol",
+      "eqa_scheme",
+      "eqa_new",
+      "eqa_cycle",
+      "eqa_save",
+      "referral",
+      "referral_export",
+      "referral_receive",
+      "referral_edition",
+      "referral_apply"
+    ],
+    "wasi": true,
+    "limits": {
+      "memoryMb": 128,
+      "timeoutMs": 15000
+    },
+    "ui": {
+      "entry": "ui.html",
+      "sha256": "3930d06769a4165ceb7a8949e862fc99d0a57e1c4cfc5772af675e16a22ab8ac",
+      "nav": {
+        "label": "Laboratory",
+        "icon": "flask-conical",
+        "section": "apps"
+      },
+      "uiSdkVersion": "1",
+      "requiredCapabilities": [
+        "bench.operate",
+        "bench.intake"
+      ]
+    },
+    "tables": [
+      {
+        "name": "specimens",
+        "columns": [
+          {
+            "name": "id",
+            "type": "text",
+            "nullable": false
+          },
+          {
+            "name": "accession",
+            "type": "text",
+            "nullable": false
+          },
+          {
+            "name": "facility",
+            "type": "text",
+            "nullable": false
+          },
+          {
+            "name": "site",
+            "type": "text",
+            "nullable": false
+          },
+          {
+            "name": "test",
+            "type": "text",
+            "nullable": false
+          },
+          {
+            "name": "assay",
+            "type": "text",
+            "nullable": false
+          },
+          {
+            "name": "stage",
+            "type": "text",
+            "nullable": false
+          },
+          {
+            "name": "owner",
+            "type": "text",
+            "nullable": false
+          },
+          {
+            "name": "owner_name",
+            "type": "text",
+            "nullable": false
+          },
+          {
+            "name": "revision",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "result_text",
+            "type": "text",
+            "nullable": false,
+            "default": ""
+          },
+          {
+            "name": "result_values",
+            "type": "jsonb",
+            "nullable": true
+          },
+          {
+            "name": "patient_ref",
+            "type": "text",
+            "nullable": true
+          },
+          {
+            "name": "draft",
+            "type": "jsonb",
+            "nullable": true
+          },
+          {
+            "name": "case_id",
+            "type": "text",
+            "nullable": true
+          },
+          {
+            "name": "section",
+            "type": "text",
+            "nullable": true
+          },
+          {
+            "name": "urgent",
+            "type": "boolean",
+            "nullable": true
+          },
+          {
+            "name": "sample_label",
+            "type": "text",
+            "nullable": true
+          },
+          {
+            "name": "edition",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "amend_reason",
+            "type": "text",
+            "nullable": true
+          },
+          {
+            "name": "release_stamp",
+            "type": "text",
+            "nullable": true
+          },
+          {
+            "name": "reviewer",
+            "type": "text",
+            "nullable": true
+          },
+          {
+            "name": "sample_type",
+            "type": "jsonb",
+            "nullable": true
+          },
+          {
+            "name": "received_at",
+            "type": "text",
+            "nullable": true
+          },
+          {
+            "name": "collected_at",
+            "type": "text",
+            "nullable": true
+          },
+          {
+            "name": "delivery_bundle",
+            "type": "jsonb",
+            "nullable": true
+          },
+          {
+            "name": "delivery_lease",
+            "type": "text",
+            "nullable": true
+          },
+          {
+            "name": "sample_condition",
+            "type": "text",
+            "nullable": true
+          },
+          {
+            "name": "expected_hours",
+            "type": "numeric",
+            "nullable": true
+          },
+          {
+            "name": "submitted_schema",
+            "type": "text",
+            "nullable": true
+          },
+          {
+            "name": "reject_reason",
+            "type": "jsonb",
+            "nullable": true
+          },
+          {
+            "name": "reject_revision",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "referral",
+            "type": "jsonb",
+            "nullable": true
+          },
+          {
+            "name": "last_delivery_error",
+            "type": "text",
+            "nullable": true
+          },
+          {
+            "name": "inbound",
+            "type": "jsonb",
+            "nullable": true
+          },
+          {
+            "name": "amend_choice",
+            "type": "jsonb",
+            "nullable": true
+          }
+        ],
+        "primaryKey": [
+          "id"
+        ],
+        "indexes": [
+          {
+            "columns": [
+              "facility",
+              "stage"
+            ]
+          },
+          {
+            "columns": [
+              "accession"
+            ]
+          }
+        ],
+        "facilityColumn": "facility"
+      },
+      {
+        "name": "events",
+        "columns": [
+          {
+            "name": "id",
+            "type": "text",
+            "nullable": false
+          },
+          {
+            "name": "specimen",
+            "type": "text",
+            "nullable": false
+          },
+          {
+            "name": "facility",
+            "type": "text",
+            "nullable": false
+          },
+          {
+            "name": "revision",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "actor",
+            "type": "text",
+            "nullable": false
+          },
+          {
+            "name": "actor_id",
+            "type": "text",
+            "nullable": false
+          },
+          {
+            "name": "action",
+            "type": "text",
+            "nullable": false
+          },
+          {
+            "name": "note",
+            "type": "text",
+            "nullable": false
+          },
+          {
+            "name": "result_text",
+            "type": "text",
+            "nullable": false,
+            "default": ""
+          },
+          {
+            "name": "result_values",
+            "type": "jsonb",
+            "nullable": true
+          },
+          {
+            "name": "reason_choice",
+            "type": "jsonb",
+            "nullable": true
+          }
+        ],
+        "primaryKey": [
+          "id"
+        ],
+        "indexes": [
+          {
+            "columns": [
+              "specimen",
+              "revision"
+            ]
+          }
+        ],
+        "facilityColumn": "facility"
+      },
+      {
+        "name": "registrations",
+        "columns": [
+          {
+            "name": "id",
+            "type": "text",
+            "nullable": false
+          },
+          {
+            "name": "facility",
+            "type": "text",
+            "nullable": false
+          },
+          {
+            "name": "fingerprint",
+            "type": "text",
+            "nullable": false
+          }
+        ],
+        "primaryKey": [
+          "id"
+        ],
+        "indexes": [],
+        "facilityColumn": "facility"
+      },
+      {
+        "name": "requisitions",
+        "columns": [
+          {
+            "name": "id",
+            "type": "text",
+            "nullable": false
+          },
+          {
+            "name": "facility",
+            "type": "text",
+            "nullable": false
+          },
+          {
+            "name": "accession",
+            "type": "text",
+            "nullable": false
+          },
+          {
+            "name": "site",
+            "type": "text",
+            "nullable": false
+          },
+          {
+            "name": "patient_ref",
+            "type": "text",
+            "nullable": true
+          },
+          {
+            "name": "requester",
+            "type": "text",
+            "nullable": false
+          },
+          {
+            "name": "urgent",
+            "type": "boolean",
+            "nullable": false
+          },
+          {
+            "name": "tests",
+            "type": "jsonb",
+            "nullable": false
+          },
+          {
+            "name": "operator",
+            "type": "text",
+            "nullable": false
+          }
+        ],
+        "primaryKey": [
+          "id"
+        ],
+        "indexes": [
+          {
+            "columns": [
+              "accession"
+            ]
+          },
+          {
+            "columns": [
+              "patient_ref"
+            ]
+          }
+        ],
+        "facilityColumn": "facility"
+      },
+      {
+        "name": "editions",
+        "columns": [
+          {
+            "name": "id",
+            "type": "text",
+            "nullable": false
+          },
+          {
+            "name": "facility",
+            "type": "text",
+            "nullable": false
+          },
+          {
+            "name": "accession",
+            "type": "text",
+            "nullable": false
+          },
+          {
+            "name": "site",
+            "type": "text",
+            "nullable": false
+          },
+          {
+            "name": "assay",
+            "type": "text",
+            "nullable": false
+          },
+          {
+            "name": "specimen",
+            "type": "text",
+            "nullable": false
+          },
+          {
+            "name": "edition",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "patient_ref",
+            "type": "text",
+            "nullable": true
+          },
+          {
+            "name": "signed_by",
+            "type": "text",
+            "nullable": false
+          },
+          {
+            "name": "result_text",
+            "type": "text",
+            "nullable": false
+          },
+          {
+            "name": "issued",
+            "type": "text",
+            "nullable": false
+          },
+          {
+            "name": "report_id",
+            "type": "text",
+            "nullable": false
+          },
+          {
+            "name": "amend_reason",
+            "type": "text",
+            "nullable": false
+          },
+          {
+            "name": "snapshot",
+            "type": "jsonb",
+            "nullable": false
+          },
+          {
+            "name": "observation_ids",
+            "type": "jsonb",
+            "nullable": true
+          },
+          {
+            "name": "superseded_by",
+            "type": "text",
+            "nullable": true
+          }
+        ],
+        "primaryKey": [
+          "id"
+        ],
+        "indexes": [
+          {
+            "columns": [
+              "accession"
+            ]
+          },
+          {
+            "columns": [
+              "specimen",
+              "edition"
+            ]
+          }
+        ],
+        "facilityColumn": "facility"
+      },
+      {
+        "name": "quality_programs",
+        "columns": [
+          {
+            "name": "id",
+            "type": "text",
+            "nullable": false
+          },
+          {
+            "name": "facility",
+            "type": "text",
+            "nullable": false
+          },
+          {
+            "name": "accession",
+            "type": "text",
+            "nullable": false
+          },
+          {
+            "name": "assay",
+            "type": "text",
+            "nullable": false
+          },
+          {
+            "name": "test",
+            "type": "text",
+            "nullable": false
+          },
+          {
+            "name": "site",
+            "type": "text",
+            "nullable": false
+          },
+          {
+            "name": "kind",
+            "type": "text",
+            "nullable": false
+          },
+          {
+            "name": "unit",
+            "type": "text",
+            "nullable": false
+          },
+          {
+            "name": "low",
+            "type": "numeric",
+            "nullable": false
+          },
+          {
+            "name": "high",
+            "type": "numeric",
+            "nullable": false
+          },
+          {
+            "name": "author",
+            "type": "text",
+            "nullable": false
+          },
+          {
+            "name": "target",
+            "type": "numeric",
+            "nullable": true
+          },
+          {
+            "name": "deviation",
+            "type": "numeric",
+            "nullable": true
+          },
+          {
+            "name": "provider",
+            "type": "text",
+            "nullable": true
+          },
+          {
+            "name": "phase",
+            "type": "text",
+            "nullable": true
+          },
+          {
+            "name": "sequence",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "feedback",
+            "type": "jsonb",
+            "nullable": true
+          }
+        ],
+        "primaryKey": [
+          "id"
+        ],
+        "indexes": [
+          {
+            "columns": [
+              "accession"
+            ]
+          }
+        ],
+        "facilityColumn": "facility"
+      },
+      {
+        "name": "quality_readings",
+        "columns": [
+          {
+            "name": "id",
+            "type": "text",
+            "nullable": false
+          },
+          {
+            "name": "facility",
+            "type": "text",
+            "nullable": false
+          },
+          {
+            "name": "program",
+            "type": "text",
+            "nullable": false
+          },
+          {
+            "name": "reading",
+            "type": "numeric",
+            "nullable": false
+          },
+          {
+            "name": "outside",
+            "type": "boolean",
+            "nullable": false
+          },
+          {
+            "name": "author",
+            "type": "text",
+            "nullable": false
+          },
+          {
+            "name": "resolution",
+            "type": "text",
+            "nullable": false
+          },
+          {
+            "name": "closed_by",
+            "type": "text",
+            "nullable": true
+          },
+          {
+            "name": "closed_at",
+            "type": "text",
+            "nullable": true
+          },
+          {
+            "name": "sequence",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "statistics",
+            "type": "jsonb",
+            "nullable": true
+          },
+          {
+            "name": "resolution_choice",
+            "type": "jsonb",
+            "nullable": true
+          }
+        ],
+        "primaryKey": [
+          "id"
+        ],
+        "indexes": [
+          {
+            "columns": [
+              "program"
+            ]
+          }
+        ],
+        "facilityColumn": "facility"
+      },
+      {
+        "name": "lab_setup",
+        "columns": [
+          {
+            "name": "id",
+            "type": "text",
+            "nullable": false
+          },
+          {
+            "name": "revision",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "performer",
+            "type": "jsonb",
+            "nullable": true
+          },
+          {
+            "name": "reasons",
+            "type": "jsonb",
+            "nullable": false
+          },
+          {
+            "name": "conditions",
+            "type": "jsonb",
+            "nullable": false
+          },
+          {
+            "name": "author",
+            "type": "text",
+            "nullable": false
+          },
+          {
+            "name": "auto_release",
+            "type": "boolean",
+            "nullable": true
+          },
+          {
+            "name": "self_review",
+            "type": "boolean",
+            "nullable": true
+          },
+          {
+            "name": "reason_catalogs",
+            "type": "jsonb",
+            "nullable": true
+          }
+        ],
+        "primaryKey": [
+          "id"
+        ]
+      },
+      {
+        "name": "rejections",
+        "columns": [
+          {
+            "name": "id",
+            "type": "text",
+            "nullable": false
+          },
+          {
+            "name": "facility",
+            "type": "text",
+            "nullable": false
+          },
+          {
+            "name": "specimen",
+            "type": "text",
+            "nullable": false
+          },
+          {
+            "name": "accession",
+            "type": "text",
+            "nullable": false
+          },
+          {
+            "name": "assay",
+            "type": "text",
+            "nullable": false
+          },
+          {
+            "name": "site",
+            "type": "text",
+            "nullable": false
+          },
+          {
+            "name": "state",
+            "type": "text",
+            "nullable": false
+          },
+          {
+            "name": "resource",
+            "type": "jsonb",
+            "nullable": false
+          },
+          {
+            "name": "last_error",
+            "type": "text",
+            "nullable": true
+          }
+        ],
+        "primaryKey": [
+          "id"
+        ],
+        "indexes": [
+          {
+            "columns": [
+              "facility"
+            ]
+          }
+        ],
+        "facilityColumn": "facility"
+      },
+      {
+        "name": "schemes",
+        "columns": [
+          {
+            "name": "id",
+            "type": "text",
+            "nullable": false
+          },
+          {
+            "name": "facility",
+            "type": "text",
+            "nullable": false
+          },
+          {
+            "name": "site",
+            "type": "text",
+            "nullable": false
+          },
+          {
+            "name": "accession",
+            "type": "text",
+            "nullable": false
+          },
+          {
+            "name": "provider",
+            "type": "text",
+            "nullable": false
+          },
+          {
+            "name": "contact",
+            "type": "text",
+            "nullable": false
+          }
+        ],
+        "primaryKey": [
+          "id"
+        ],
+        "indexes": [
+          {
+            "columns": [
+              "facility"
+            ]
+          }
+        ],
+        "facilityColumn": "facility"
+      },
+      {
+        "name": "cycles",
+        "columns": [
+          {
+            "name": "id",
+            "type": "text",
+            "nullable": false
+          },
+          {
+            "name": "facility",
+            "type": "text",
+            "nullable": false
+          },
+          {
+            "name": "scheme",
+            "type": "text",
+            "nullable": false
+          },
+          {
+            "name": "accession",
+            "type": "text",
+            "nullable": false
+          },
+          {
+            "name": "received",
+            "type": "text",
+            "nullable": false
+          },
+          {
+            "name": "phase",
+            "type": "text",
+            "nullable": false
+          },
+          {
+            "name": "revision",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "analytes",
+            "type": "jsonb",
+            "nullable": false
+          },
+          {
+            "name": "history",
+            "type": "jsonb",
+            "nullable": false
+          }
+        ],
+        "primaryKey": [
+          "id"
+        ],
+        "indexes": [
+          {
+            "columns": [
+              "facility"
+            ]
+          }
+        ],
+        "facilityColumn": "facility"
+      }
+    ],
+    "permissions": [
+      {
+        "key": "bench.operate",
+        "label": "Operate Lab Bench",
+        "description": "Receive specimens and record bench handoffs."
+      },
+      {
+        "key": "bench.review",
+        "label": "Review bench results",
+        "description": "Accept or return another operator’s recorded result."
+      },
+      {
+        "key": "bench.intake",
+        "label": "Laboratory reception",
+        "description": "Register patients, order tests and receive specimens."
+      },
+      {
+        "key": "bench.configure",
+        "label": "Configure laboratory",
+        "description": "Set the performing facility and reception lists."
+      }
+    ],
+    "actionPermissions": {
+      "queue": [
+        "bench.operate"
+      ],
+      "directory": [
+        "bench.operate",
+        "bench.intake"
+      ],
+      "receive": [
+        "bench.operate",
+        "bench.intake"
+      ],
+      "history": [
+        "bench.operate"
+      ],
+      "advance": [
+        "bench.operate"
+      ],
+      "order": [
+        "bench.operate",
+        "bench.intake"
+      ],
+      "overview": [
+        "bench.operate",
+        "bench.intake"
+      ],
+      "review": [
+        "bench.review"
+      ],
+      "result_form": [
+        "bench.operate"
+      ],
+      "result_options": [
+        "bench.operate"
+      ],
+      "patient_find": [
+        "bench.operate",
+        "bench.intake"
+      ],
+      "patient_name": [
+        "bench.operate",
+        "bench.intake"
+      ],
+      "specimen": [
+        "bench.operate"
+      ],
+      "registration": [
+        "bench.operate",
+        "bench.intake"
+      ],
+      "requisitions": [
+        "bench.operate",
+        "bench.intake"
+      ],
+      "case_detail": [
+        "bench.operate",
+        "bench.intake"
+      ],
+      "editions": [
+        "bench.operate"
+      ],
+      "report_detail": [
+        "bench.operate"
+      ],
+      "release": [
+        "bench.review"
+      ],
+      "patient_profile": [
+        "bench.operate",
+        "bench.intake"
+      ],
+      "patients": [
+        "bench.operate",
+        "bench.intake"
+      ],
+      "quality_list": [
+        "bench.operate"
+      ],
+      "quality_get": [
+        "bench.operate"
+      ],
+      "quality_record": [
+        "bench.operate"
+      ],
+      "quality_close": [
+        "bench.operate"
+      ],
+      "quality_create": [
+        "bench.review"
+      ],
+      "edition_latest": [
+        "bench.operate"
+      ],
+      "desk_queue": [
+        "bench.operate",
+        "bench.intake"
+      ],
+      "desk_specimen": [
+        "bench.operate",
+        "bench.intake"
+      ],
+      "desk_history": [
+        "bench.operate",
+        "bench.intake"
+      ],
+      "desk_action": [
+        "bench.operate",
+        "bench.intake"
+      ],
+      "sample_types": [
+        "bench.operate",
+        "bench.intake"
+      ],
+      "setup_get": [
+        "bench.review",
+        "bench.operate",
+        "bench.intake",
+        "bench.configure"
+      ],
+      "settings_directory": [
+        "bench.configure"
+      ],
+      "setup_save": [
+        "bench.configure"
+      ],
+      "reject_reasons": [
+        "bench.operate",
+        "bench.intake"
+      ],
+      "rejections": [
+        "bench.review"
+      ],
+      "send_rejection": [
+        "bench.review"
+      ],
+      "statistics": [
+        "bench.operate"
+      ],
+      "eqa_schemes": [
+        "bench.operate"
+      ],
+      "eqa_enrol": [
+        "bench.review"
+      ],
+      "eqa_scheme": [
+        "bench.operate"
+      ],
+      "eqa_new": [
+        "bench.review"
+      ],
+      "eqa_cycle": [
+        "bench.operate"
+      ],
+      "eqa_save": [
+        "bench.review"
+      ],
+      "referral": [
+        "bench.operate"
+      ],
+      "referral_export": [
+        "bench.operate"
+      ],
+      "referral_receive": [
+        "bench.operate"
+      ],
+      "referral_edition": [
+        "bench.operate"
+      ],
+      "referral_apply": [
+        "bench.operate"
+      ]
+    }
+  },
+  "signature": "37bc628b3ea55167b2c16a44d5f49ce87fd6b7e1d311b04c3fe5ece071b789ca674795b2499cbf06e8c95124ea4cf39e88b1a014eb75fd5a52a8c57146b25906"
+}

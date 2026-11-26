@@ -65,6 +65,15 @@
       "summary": "Imports a laboratory source database into OpenLDR and compares it with an OpenLDR v1 reference.",
       "path": "bundles/cdr-source-0.1.6",
       "signatureFingerprint": "5ac92136598e4f7066ad726b74b5aed339a2d2f94579adf057caff5ed75d7cf5"
+    },
+    {
+      "id": "lab-bench",
+      "kind": "plugin",
+      "latestVersion": "0.6.2",
+      "publisher": "OpenLDR Reference Publisher",
+      "summary": "Patient registration, requisitions, reception, testing and laboratory reports.",
+      "path": "bundles/lab-bench-0.6.2",
+      "signatureFingerprint": "5ac92136598e4f7066ad726b74b5aed339a2d2f94579adf057caff5ed75d7cf5"
     }
   ]
 }
