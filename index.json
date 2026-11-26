@@ -10,7 +10,8 @@
       "publisher": "OpenLDR Reference Publisher",
       "summary": "DHIS2 aggregate + tracker sink (mapping, metadata, push)",
       "path": "bundles/dhis2-sink-0.1.0",
-      "signatureFingerprint": "5ac92136598e4f7066ad726b74b5aed339a2d2f94579adf057caff5ed75d7cf5"
+      "signatureFingerprint": "5ac92136598e4f7066ad726b74b5aed339a2d2f94579adf057caff5ed75d7cf5",
+      "ceVersion": "*"
     },
     {
       "id": "hl7v2",
@@ -19,7 +20,8 @@
       "publisher": "OpenLDR Reference Publisher",
       "summary": "HL7 v2 (ORU/ORM) -> FHIR R4 ingestion plugin",
       "path": "bundles/hl7v2-0.1.0",
-      "signatureFingerprint": "5ac92136598e4f7066ad726b74b5aed339a2d2f94579adf057caff5ed75d7cf5"
+      "signatureFingerprint": "5ac92136598e4f7066ad726b74b5aed339a2d2f94579adf057caff5ed75d7cf5",
+      "ceVersion": "*"
     },
     {
       "id": "tabular",
@@ -28,7 +30,8 @@
       "publisher": "OpenLDR Reference Publisher",
       "summary": "CSV/Excel -> FHIR R4 ingestion plugin (configurable mapping)",
       "path": "bundles/tabular-0.1.0",
-      "signatureFingerprint": "5ac92136598e4f7066ad726b74b5aed339a2d2f94579adf057caff5ed75d7cf5"
+      "signatureFingerprint": "5ac92136598e4f7066ad726b74b5aed339a2d2f94579adf057caff5ed75d7cf5",
+      "ceVersion": "*"
     },
     {
       "id": "whonet-sqlite",
@@ -37,7 +40,8 @@
       "publisher": "OpenLDR Reference Publisher",
       "summary": "WHONET SQLite -> FHIR R4 AMR reference plugin, with a workflow node",
       "path": "bundles/whonet-sqlite-0.1.0",
-      "signatureFingerprint": "5ac92136598e4f7066ad726b74b5aed339a2d2f94579adf057caff5ed75d7cf5"
+      "signatureFingerprint": "5ac92136598e4f7066ad726b74b5aed339a2d2f94579adf057caff5ed75d7cf5",
+      "ceVersion": "*"
     },
     {
       "id": "vl-reports-mz",
@@ -46,7 +50,8 @@
       "publisher": "OpenLDR Content Publisher",
       "summary": "Viral load reports in the v1 layout, for data exported from DISA*Lab.",
       "path": "bundles/vl-reports-mz-0.5.3",
-      "signatureFingerprint": "69b5920dc40a601cd61736e71998f3dcc138407717b5b632ee99a519674314be"
+      "signatureFingerprint": "69b5920dc40a601cd61736e71998f3dcc138407717b5b632ee99a519674314be",
+      "ceVersion": "*"
     },
     {
       "id": "reports-zm",
@@ -55,7 +60,8 @@
       "publisher": "OpenLDR Content Publisher",
       "summary": "Zambia's v1 reports in OpenLDR CE, for data exported from DISA*Lab.",
       "path": "bundles/reports-zm-0.1.2",
-      "signatureFingerprint": "69b5920dc40a601cd61736e71998f3dcc138407717b5b632ee99a519674314be"
+      "signatureFingerprint": "69b5920dc40a601cd61736e71998f3dcc138407717b5b632ee99a519674314be",
+      "ceVersion": ">=0.1.9"
     },
     {
       "id": "cdr-source",
@@ -64,7 +70,8 @@
       "publisher": "OpenLDR Reference Publisher",
       "summary": "Imports a laboratory source database into OpenLDR and compares it with an OpenLDR v1 reference.",
       "path": "bundles/cdr-source-0.1.6",
-      "signatureFingerprint": "5ac92136598e4f7066ad726b74b5aed339a2d2f94579adf057caff5ed75d7cf5"
+      "signatureFingerprint": "5ac92136598e4f7066ad726b74b5aed339a2d2f94579adf057caff5ed75d7cf5",
+      "ceVersion": "*"
     },
     {
       "id": "lab-bench",
@@ -73,7 +80,8 @@
       "publisher": "OpenLDR Reference Publisher",
       "summary": "Patient registration, requisitions, reception, testing and laboratory reports.",
       "path": "bundles/lab-bench-0.6.2",
-      "signatureFingerprint": "5ac92136598e4f7066ad726b74b5aed339a2d2f94579adf057caff5ed75d7cf5"
+      "signatureFingerprint": "5ac92136598e4f7066ad726b74b5aed339a2d2f94579adf057caff5ed75d7cf5",
+      "ceVersion": ">=0.1.13"
     }
   ]
 }
